@@ -26,7 +26,7 @@ templates.env.globals['get_current_year'] = get_current_year
 
 @app.exception_handler(404)
 async def custom_404_handler(request, _):
-    return templates.TemplateResponse("pages/404.html", {"request": request})
+    return RedirectResponse('/404')
 
 @app.exception_handler(RequestValidationError)
 async def validation_exception_handler(request, exc):
@@ -39,10 +39,15 @@ async def validation_exception_handler(request, exc):
     return templates.TemplateResponse(request, 'components/_error_banner.html', context=context, headers=headers)
 
 @app.exception_handler(NotAuthenticatedError)
-async def not_authenticated_exception_handler(request, exc):
+async def not_authenticated_exception_handler(request, exc):    
     return RedirectResponse('/login', status_code=status.HTTP_303_SEE_OTHER)
 
 # Routers
+
+@app.get('/404', response_class=HTMLResponse)
+async def not_found(request: Request) -> HTMLResponse:
+    headers: dict[str,str] = {'HX-Reswap': 'innerHTML', 'HX-Retarget': '#main-content'}
+    return templates.TemplateResponse("pages/404.html", {"request": request}, headers=headers)
 
 @app.get('/', response_class=HTMLResponse)
 async def index(request: Request, user: User = Depends(oauth_cookie)) -> HTMLResponse:
