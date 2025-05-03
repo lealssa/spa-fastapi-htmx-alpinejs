@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-10 col-lg-8 col-xl-6 p-5 rounded shadow-lg h-100" id="signup-form">
+
+        <h1 class="fw-light text-primary text-center mb-3">Meus dados</h1>
+        
+        <form>
+
+            <fieldset disabled>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="first_name" name="first_name" placeholder="nome" value="{{ user.first_name }}">
+                    <label for="first_name">Nome</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="last_name" name="last_name" placeholder="sobrenome" value="{{ user.last_name }}">
+                    <label for="last_name">Sobrenome</label>
+                </div>
+
+                <div class="form-floating mb-3">
+                    <input class="form-control" type="text" id="email" name="email" placeholder="meuusuario" value="{{ user.email }}">
+                    <label for="email">Email</label>
+                </div>
+
+            </fieldset>            
+
+        </form>
+
+        <p class="mb-2"><a class="link-primary link-offset-1" href="" hx-get="{{ url_for('user_password') }}" hx-target="#main-content">Alterar senha</a></p>
+        <p><a class="link-danger link-offset-1" href="" hx-get="{{ url_for('confirm_delete_account') }}" hx-target="#main-content">Encerrar conta</a></p>
+
+    </div>
+</div>
+{% endblock %}

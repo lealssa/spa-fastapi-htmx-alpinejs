@@ -1,0 +1,37 @@
+<nav id="nav" class="navbar navbar-expand-md" hx-get="{{ url_for('get_navbar') }}" hx-swap="outerHTML"
+    hx-trigger="load-nav from:body" hx-push-url="false">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="#" hx-get="{{ url_for('index') }}" hx-target="#main-content"
+            hx-swap="innerHTML">Meu Site</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+            </ul>
+            <div class="d-flex">
+                {% if user %}
+                <ul class="navbar-nav me-auto mb-lg-0">
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                            Olá, <span class="text-primary fw-semibold">{{ user.first_name }}</span>
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="" hx-get="{{ url_for('user_data') }}"
+                                    hx-target="#main-content" hx-swap="innerHTML" hx-push-url="true">Meus dados</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="" hx-push-url="true" hx-get="{{ url_for('logout') }}"
+                                    hx-target="#main-content" hx-swap="innerHTML" x-data
+                                    @htmx:after-request="htmx.trigger('#nav','load-nav')">Sair</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</nav>

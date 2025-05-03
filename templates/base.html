@@ -1,0 +1,5 @@
+{% if request.headers['HX-Request'] %}
+{% block content %}{% endblock %}
+{% else %}
+{% extends 'layout.html' %}
+{% endif %}

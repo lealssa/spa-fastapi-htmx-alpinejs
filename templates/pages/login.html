@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6 col-xl-4 p-5 rounded shadow-lg" id="login-form">
+
+        <h1 class="fw-light text-primary text-center">Login</h1>
+        <h2 class="mb-3 font-sm fs-3 fw-semibold text-center">Faça login para acessar o sistema.</h2>
+
+        <form hx-post="{{ url_for('user_login') }}" hx-target="#main-content" x-data @htmx:after-request="htmx.trigger('#nav','load-nav')">
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" id="email" name="email" placeholder="meuusuario">
+                <label for="email">Usuário</label>
+            </div>
+        
+            <div class="form-floating mb-3">
+                <input class="form-control" type="password" name="password" id="password" placeholder="password">
+                <label for="password">Senha</label>
+            </div>
+        
+            <button type="submit" class="btn btn-primary mb-3 w-100">Enviar</button>
+        
+        </form>
+
+        <a href="" hx-get="{{ url_for('signup') }}" hx-target="#main-content">Não tenho cadastro</a>
+    </div>    
+</div>
+{% endblock %}

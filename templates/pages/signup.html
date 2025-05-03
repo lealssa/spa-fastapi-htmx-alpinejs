@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="row justify-content-center">    
+    <div class="col-md-10 col-lg-8 col-xl-6 p-5 rounded shadow-lg h-100" id="signup-form">
+
+        <h1 class="fw-light text-primary text-center">Cadastro</h1>
+        <h2 class="mb-3 font-sm fs-3 fw-semibold text-center">Cadastre-se para criar sua conta.</h2>
+
+        <form hx-post="{{ url_for('add_user') }}" hx-target="#signup-form">
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" id="first_name" name="first_name" placeholder="nome">
+                <label for="first_name">Nome</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" id="last_name" name="last_name" placeholder="sobrenome">
+                <label for="last_name">Sobrenome</label>
+            </div>            
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="text" id="email" name="email" placeholder="meuusuario">
+                <label for="email">Email</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="password" name="password" id="password" placeholder="password">
+                <label for="password">Senha</label>
+            </div>
+
+            <div class="form-floating mb-3">
+                <input class="form-control" type="password" name="password_confirm" id="password_confirm"
+                    placeholder="passwordconfirm">
+                <label for="password">Confirme a senha</label>
+            </div>
+
+            <button type="submit" class="btn btn-primary mb-3 w-100">Enviar</button>
+
+        </form>
+
+        <a href="" hx-get="{{ url_for('login') }}" hx-target="#main-content">Voltar para o login</a>
+
+    </div>
+</div>
+{% endblock %}
