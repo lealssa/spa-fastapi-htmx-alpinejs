@@ -90,14 +90,14 @@ async def logout(request: Request, response: Response) -> RedirectResponse|HTMLR
     response.delete_cookie("access_token")     
     return response
 
-@app.get('/signup', response_model=None)
+@app.get('/criar-conta', response_model=None)
 async def signup(request: Request, user_jwt: UserJwt | None = Depends(current_user_from_jwt)) -> HTMLResponse | RedirectResponse:
     if user_jwt:
         return RedirectResponse("/meus-dados")
     context = {'title': 'Cadastro de usuário'}
     return templates.TemplateResponse(request, 'pages/signup.html', context=context)
 
-@app.post('/signup', response_class=HTMLResponse)
+@app.post('/criar-conta', response_class=HTMLResponse)
 async def add_user(request: Request, user_signup: Annotated[UserSignup, Form()]) -> HTMLResponse:
     if len(user_signup.password) < 6:
         raise RequestValidationError('A senha precisa ter 6 ou mais caracteres.')    
