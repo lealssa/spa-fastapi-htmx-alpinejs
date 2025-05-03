@@ -6,7 +6,7 @@
         <h1 class="fw-light text-primary text-center">Remoção de conta</h1>
         <h2 class="mb-3 font-sm fs-3 fw-semibold text-center">Aceite os termos para remover sua conta.</h2>
 
-        <form hx-post="{{ url_for('delete_account') }}" hx-target="#delete-account-form">
+        <form hx-post="{{ url_for('delete_account') }}" hx-target="#main-content" @htmx:after-request="htmx.trigger('#nav','load-nav')">
 
             <div class="mb-3 form-check">
                 <input type="checkbox" class="form-check-input" id="confirm_delete_account"
