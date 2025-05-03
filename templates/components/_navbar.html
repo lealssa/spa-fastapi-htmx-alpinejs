@@ -2,7 +2,7 @@
     hx-trigger="load-nav from:body" hx-push-url="false">
     <div class="container-fluid">
         <a class="navbar-brand" href="#" hx-get="{{ url_for('index') }}" hx-target="#main-content"
-            hx-swap="innerHTML">Meu Site</a>
+            hx-swap="innerHTML" hx-push-url="true">Meu Site</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
